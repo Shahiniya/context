@@ -23,7 +23,7 @@ export const Body = (props) => {
             </h1>
 
         ))
-    }
+    };
     </Container1>
   )
 }

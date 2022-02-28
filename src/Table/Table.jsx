@@ -2,7 +2,7 @@ import { Container,Add } from '../Table/style';
 import React, {useState} from 'react';
 
 
-export const Table = () => {
+export const Table = ({id}) => {
     
     const [data,setData] = useState([
         {id:1,name:'Shokhzoda',age:34,job:'front-end developer'},
@@ -17,28 +17,54 @@ export const Table = () => {
         {id:10,name:'Shokhzoda',age:34,job:'front-end developer'},
     
     ])
+    const [name,setName] = useState('');
+    const [age,setAge] = useState('')
+    const [job,setJob] = useState('');
 
-    const [inputt,setInput] = useState();
 
-    const onChange = (e) =>{
-        const {name,value} = e.target.value;
-        setInput({[name]:value})
-        // console.log(inputt)
+    // const onChange = (e) =>{
+    //     // const {name,value} = e.target;
+    //     setName(e.target.value) && setAge(e.target.value)  ;
+    //        }
+
+    // const onAdd = () => {    
+    //        const newUser= {
+    //         id: data.length+1,
+    //         name:name, 
+    //          age:age,          
+    //        } 
+    //     setData(
+    //         [...data,newUser]
+    //           )
+    // }
+
+// const [name,setName] = useState('');
+// const [age,setAge] = useState('');
+
+// const onChange = (e)=>{
+//     e.preventDefault();
+// const newData= {
+//     name:name,
+//     age:age
+// };
+// setData([...data,newData]);
+// setName('');
+// setAge('');
+// }
+
+const onChange =(e)=>{
+    setName(e.target.value) ; ;
+    e.preventDefault();
+}
+const onAdd=()=>{
+    const newData={
+        id:data.length+1,
+        name:name,
+        age:age,
+        job:job,
     }
-
-    const onSave = (e) => {
-        const newUser = {
-            id: data.length+1,
-            name:data.name,            
-            job:data.job,
-           
-        }
-        setData(
-            [...data,newUser]
-           )
-    }
-
-
+    setData([...data,newData])
+}
   return (
     <Container>
     <table>
@@ -68,10 +94,12 @@ export const Table = () => {
                 ))}
             </tbody>
         </table>
-        <Add>
-            <input onChange={onChange}  name='name' type='text' placeholder='enter name'/>
-            <input onChange={onChange}  name='job' type='text' placeholder='enter job'/>
-            <button onClick={onSave} >add</button>
+        <Add key={id}>
+             <input onChange={(e)=>setName(e.target.value)}  value={name} id='name' type='text' placeholder='enter name'/>
+             <input onChange={(e)=>setAge(e.target.value)}  value={age} id='age' type='text' placeholder='enter name'/>
+             <input onChange={(e)=>setJob(e.target.value)}  value={job} id='job' type='text' placeholder='enter name'/>
+               
+            <button onClick={onAdd} >add</button>
         </Add>
     
     </Container>

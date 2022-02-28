@@ -9,3 +9,17 @@ export const flowers=[
     {id:8, title:'Broadleaf Lady Palm', price:59.00},
     {id:9, title:'Chinese Evergreen', price:39.00},
 ]
+
+export const flow = [
+    {id:1,name:'Shokhzoda',age:34,job:'front-end developer'},
+    {id:2,name:'Shokhzoda',age:34,job:'front-end developer'},
+    {id:3,name:'Shokhzoda',age:34,job:'front-end developer'},
+    {id:4,name:'Shokhzoda',age:34,job:'front-end developer'},
+    {id:5,name:'Shokhzoda',age:34,job:'front-end developer'},
+    {id:6,name:'Shokhzoda',age:34,job:'front-end developer'},
+    {id:7,name:'Shokhzoda',age:34,job:'front-end developer'},
+    {id:8,name:'Shokhzoda',age:34,job:'front-end developer'},
+    {id:9,name:'Shokhzoda',age:34,job:'front-end developer'},
+    {id:10,name:'Shokhzoda',age:34,job:'front-end developer'},
+
+]

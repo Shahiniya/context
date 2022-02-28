@@ -1,44 +1,16 @@
 import { Container,Add } from '../Table/style';
 import React, {useState} from 'react';
+import { flow } from '../mock/mock';
 
 
 export const Table = ({id}) => {
     
-    const [data,setData] = useState([
-        {id:1,name:'Shokhzoda',age:34,job:'front-end developer'},
-        {id:2,name:'Shokhzoda',age:34,job:'front-end developer'},
-        {id:3,name:'Shokhzoda',age:34,job:'front-end developer'},
-        {id:4,name:'Shokhzoda',age:34,job:'front-end developer'},
-        {id:5,name:'Shokhzoda',age:34,job:'front-end developer'},
-        {id:6,name:'Shokhzoda',age:34,job:'front-end developer'},
-        {id:7,name:'Shokhzoda',age:34,job:'front-end developer'},
-        {id:8,name:'Shokhzoda',age:34,job:'front-end developer'},
-        {id:9,name:'Shokhzoda',age:34,job:'front-end developer'},
-        {id:10,name:'Shokhzoda',age:34,job:'front-end developer'},
-    
-    ])
     const [name,setName] = useState('');
     const [age,setAge] = useState('')
     const [job,setJob] = useState('');
+    const [list,setList] = useState(flow);
 
-
-    // const onChange = (e) =>{
-    //     // const {name,value} = e.target;
-    //     setName(e.target.value) && setAge(e.target.value)  ;
-    //        }
-
-    // const onAdd = () => {    
-    //        const newUser= {
-    //         id: data.length+1,
-    //         name:name, 
-    //          age:age,          
-    //        } 
-    //     setData(
-    //         [...data,newUser]
-    //           )
-    // }
-
-// const [name,setName] = useState('');
+  // const [name,setName] = useState('');
 // const [age,setAge] = useState('');
 
 // const onChange = (e)=>{
@@ -54,16 +26,21 @@ export const Table = ({id}) => {
 
 const onChange =(e)=>{
     setName(e.target.value) ; ;
-    e.preventDefault();
+    // e.preventDefault();
 }
 const onAdd=()=>{
     const newData={
-        id:data.length+1,
+        id:list.length+1,
         name:name,
         age:age,
         job:job,
     }
-    setData([...data,newData])
+    setList([...list,newData])
+}
+
+const onDelete= (id) =>{
+     let res= list.filter((value)=>value.id !== id);
+     setList(res);
 }
   return (
     <Container>
@@ -80,7 +57,7 @@ const onAdd=()=>{
    
             <tbody>
             {
-                data.map(({id,name,age,job})=>(
+                list.map(({id,name,age,job})=>(
                    
                 <tr key={id}>
                     <td>{id}</td>
@@ -89,15 +66,16 @@ const onAdd=()=>{
                     <td>{job}</td>
                     <td>
                     <button>save</button>
+                    <button onClick={()=>onDelete(id)} >delete</button>
                     </td>
                 </tr>
                 ))}
             </tbody>
         </table>
         <Add key={id}>
-             <input onChange={(e)=>setName(e.target.value)}  value={name} id='name' type='text' placeholder='enter name'/>
-             <input onChange={(e)=>setAge(e.target.value)}  value={age} id='age' type='text' placeholder='enter name'/>
-             <input onChange={(e)=>setJob(e.target.value)}  value={job} id='job' type='text' placeholder='enter name'/>
+             <input onChange={(e)=>onChange(e)} type='text' placeholder='enter name'/>
+             <input onChange={(e)=>setAge(e.target.value)}  type='text' placeholder='enter name'/>
+             <input onChange={(e)=>setJob(e.target.value)}  type='text' placeholder='enter name'/>
                
             <button onClick={onAdd} >add</button>
         </Add>
